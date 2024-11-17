@@ -10,6 +10,7 @@ function App() {
   const [winner,setWinner] = useState<Players | null>(null);
   const [draw, setDraw] = useState<boolean | null>(null);
   const [marks, setMarks] = useState<{[key:string]:Players}>({});
+  const gameOver = !!winner || !!draw;
 
 const getSquares = () => {
       return new Array(9).fill(true);
@@ -50,6 +51,14 @@ const getSquares = () => {
 
   }
 
+
+  const reset = () => {
+
+    setMarks({});
+    setWinner(null);
+    setDraw(null);
+  }
+
 useEffect(() =>{
   const winner = getWinner()
 
@@ -62,8 +71,10 @@ useEffect(() =>{
     <div className="container">
 
       {winner && <h1>{winner} ganhou!!!</h1>}
+
+      {gameOver && <button onClick={reset}>Jogar novamente</button>}
       
-      <button>Jogar novamente</button>
+     
 
       <p>É a vez de {turn}</p>
 
