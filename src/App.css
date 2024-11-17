@@ -17,7 +17,12 @@
   width: 170px;
   flex-wrap: wrap;
   margin: 10px;
+  opacity: 1;
 } 
+
+.board.gameOver{
+  opacity: 0.4;
+}
 
 .cell{
   width: 50px;
@@ -30,9 +35,8 @@
   margin: 2px;
   cursor: pointer;
   border-radius: 5px;
-
+  box-shadow: 1px 1px 1px 1px hwb(0 53% 45%);
 } 
-
 
 .cell.O{
   background-color: #2a9d8f;

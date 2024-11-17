@@ -17,6 +17,7 @@ const getSquares = () => {
   }
 
   const play = (index:number)=>{
+    if(marks[index] || gameOver){return;}
     setMarks(prev =>({ ...prev, [index]:turn}))
     setTurn(prev => prev === "O" ? "X" : "O")
   }
@@ -53,7 +54,7 @@ const getSquares = () => {
 
 
   const reset = () => {
-
+    setTurn(marks[0] === "O" ? "X" : "O");
     setMarks({});
     setWinner(null);
     setDraw(null);
@@ -64,6 +65,10 @@ useEffect(() =>{
 
   if (winner){
     setWinner(winner)
+  }else{
+    if(Object.keys(marks).length === 9){
+      setDraw(true)
+    }
   }
 },[marks])
   
@@ -72,13 +77,15 @@ useEffect(() =>{
 
       {winner && <h1>{winner} ganhou!!!</h1>}
 
+      {draw && <h1>Empate!!!</h1>}
+
       {gameOver && <button onClick={reset}>Jogar novamente</button>}
       
      
 
-      <p>É a vez de {turn}</p>
+      {!gameOver && <p>É a vez de {turn}</p>}
 
-      <div className="board">
+      <div className={`board ${gameOver ? "gameOver" : null}`}>
       {getSquares().map((_, i) => (
         <div className={`cell ${getCellPlayer(i)}`} onClick={() => play(i)}>{marks[i]}</div>
         ))}
