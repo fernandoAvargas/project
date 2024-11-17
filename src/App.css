@@ -23,6 +23,7 @@
   width: 50px;
   height: 50px;
   background-color: white;
+  color: white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,3 +32,13 @@
   border-radius: 5px;
 
 } 
+
+
+.cell.O{
+  background-color: #2a9d8f;
+}
+
+.cell.X{
+  background-color: #e78f51;
+}
+
